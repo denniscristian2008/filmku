@@ -29,41 +29,43 @@
     </header>
 
 
-    <!-- HERO -->
-    <section class="hero" id="home">
+    <!-- BANNER FILM -->
+<section class="movie-banner" id="home">
 
-        <div class="hero-content">
+  <div class="banner-track" id="bannerTrack">
 
-            <p class="small-title">
-                SELAMAT DATANG DI FILMKU
-            </p>
+    <div class="banner-content">
 
-            <h1>
-                Temukan Film<br>
-                Favoritmu
-            </h1>
+        <p class="banner-label">
+            FILMKU REKOMENDASI
+        </p>
 
-            <p class="hero-description">
-                Cari film favoritmu dan lihat poster,
-                genre, rating, serta sinopsisnya.
-            </p>
+        <h1 id="bannerTitle">
+            Memuat film...
+        </h1>
 
-            <div class="search-box">
-                <input
-                    type="text"
-                    id="searchInput"
-                    placeholder="Cari judul film..."
-                    onkeydown="handleSearch(event)"
-                >
+        <p id="bannerDescription">
+            Sedang mengambil informasi film...
+        </p>
 
-                <button onclick="searchMovies()">
-                    🔍 Cari
-                </button>
-            </div>
-
+        <div class="banner-info">
+            <span id="bannerRating">⭐ -</span>
+            <span id="bannerYear">📅 -</span>
         </div>
 
-    </section>
+        <button
+            class="banner-button"
+            id="bannerButton">
+            ▶ Lihat Detail
+        </button>
+
+      <div class="banner-indicators" id="bannerIndicators"></div>
+
+    </div>
+
+    </div>
+
+</section>
 
 
     <!-- FILM -->
