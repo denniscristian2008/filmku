@@ -731,13 +731,23 @@ function updateBannerIndicators() {
 
     bannerMovies.forEach(function(movie, index) {
 
-        const dot = document.createElement("span");
+        const dot =
+            document.createElement("span");
 
         if (index === currentBanner) {
             dot.classList.add("active");
         }
 
+        dot.onclick = function() {
+
+            currentBanner = index;
+
+            showBannerMovie();
+            moveBanner();
+
+        };
+
         container.appendChild(dot);
 
     });
-                }
+        }
