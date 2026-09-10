@@ -565,3 +565,179 @@ function escapeHTML(text) {
         .replace(/'/g, "&#039;");
 
 }
+// =========================
+// BANNER 5 FILM TMDB
+// =========================
+
+let bannerMovies = [];
+let currentBanner = 0;
+
+async function loadBannerMovies() {
+
+    try {
+
+        const url =
+            BASE_URL +
+            "/movie/popular?api_key=" +
+            API_KEY +
+            "&language=id-ID&page=1";
+
+        const response = await fetch(url);
+        const data = await response.json();
+
+        if (!data.results || data.results.length === 0) {
+            return;
+        }
+
+        bannerMovies = data.results.slice(0, 5);
+
+        showBannerMovie();
+
+        setInterval(function () {
+
+            currentBanner++;
+
+            if (currentBanner >= bannerMovies.length) {
+                currentBanner = 0;
+            }
+
+            showBannerMovie();
+          
+
+        }, 7000);
+
+    } catch (error) {
+
+        console.log(
+            "Banner gagal dimuat:",
+            error
+        );
+
+    }
+}
+
+
+function showBannerMovie() {
+
+    const movie =
+        bannerMovies[currentBanner];
+
+    if (!movie) {
+        return;
+    }
+
+    updateBannerIndicators();
+
+    const title =
+        document.getElementById("bannerTitle");
+
+    const description =
+        document.getElementById("bannerDescription");
+
+    const rating =
+        document.getElementById("bannerRating");
+
+    const year =
+        document.getElementById("bannerYear");
+
+    const banner =
+        document.querySelector(".movie-banner");
+
+    const button =
+        document.getElementById("bannerButton");
+
+    if (title) {
+        title.textContent =
+            movie.title || "Film";
+    }
+
+    if (description) {
+        description.textContent =
+            movie.overview ||
+            "Temukan film favoritmu di FilmKu.";
+    }
+
+    if (rating) {
+        rating.textContent =
+            "⭐ " +
+            Number(
+                movie.vote_average || 0
+            ).toFixed(1);
+    }
+
+    if (year) {
+
+        let movieYear = "-";
+
+        if (movie.release_date) {
+            movieYear =
+                movie.release_date.substring(0, 4);
+        }
+
+        year.textContent =
+            "📅 " + movieYear;
+    }
+
+    if (banner && movie.backdrop_path) {
+
+        banner.style.backgroundImage =
+            "linear-gradient(90deg, rgba(0,0,0,.95) 0%, rgba(0,0,0,.7) 45%, rgba(0,0,0,.25) 100%), url('" +
+            IMAGE_URL.replace("/w500", "/original") +
+            movie.backdrop_path +
+            "')";
+    }
+
+    if (button) {
+
+        button.onclick = function () {
+            openMovieDetail(movie.id);
+        };
+
+    }
+}
+
+function moveBanner() {
+
+    const track =
+        document.getElementById("bannerTrack");
+
+    if (!track) {
+        return;
+    }
+
+    track.style.transform =
+        "translateX(-" +
+        (currentBanner * 100) +
+        "%)";
+}
+
+// Jalankan banner
+loadBannerMovies();
+
+// =========================
+// INDIKATOR BANNER
+// =========================
+
+function updateBannerIndicators() {
+
+    const container =
+        document.getElementById("bannerIndicators");
+
+    if (!container) {
+        return;
+    }
+
+    container.innerHTML = "";
+
+    bannerMovies.forEach(function(movie, index) {
+
+        const dot = document.createElement("span");
+
+        if (index === currentBanner) {
+            dot.classList.add("active");
+        }
+
+        container.appendChild(dot);
+
+    });
+                }
