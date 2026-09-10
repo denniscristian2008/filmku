@@ -2,7 +2,7 @@
 // PENGATURAN TMDB
 // ================================
 
-const API_KEY = "MASUKKAN_API_KEY_KAMU";
+const API_KEY = "5d2ccb46cf4af3dfb8a1be0e97bbb573";
 
 const BASE_URL = "https://api.themoviedb.org/3";
 
