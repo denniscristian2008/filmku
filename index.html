@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FilmKu - Temukan Film Favoritmu</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="logo">
+            🎬 FilmKu
+        </div>
+
+        <button class="menu-button" onclick="toggleMenu()">
+            ☰
+        </button>
+
+        <nav id="navigation">
+            <a href="#home">Home</a>
+            <a href="#film">Film</a>
+            <a href="#populer">Populer</a>
+        </nav>
+
+      <div class="search-box">
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="Cari film..."
+        onkeydown="handleSearch(event)"
+    >
+
+    <button onclick="searchMovies()">
+        🔍
+    </button>
+      </div>
+    </header>
+
+
+    <!-- BANNER FILM -->
+<section class="movie-banner" id="home">
+
+    <div class="banner-content">
+
+        <p class="banner-label">FILMKU REKOMENDASI</p>
+
+        <h1 id="bannerTitle">FilmKu</h1>
+
+        <p id="bannerDescription">
+            Temukan film favoritmu di FilmKu.
+        </p>
+
+        <div class="banner-info">
+            <span id="bannerRating">⭐ 0.0</span>
+            <span id="bannerYear">📅 -</span>
+        </div>
+
+        <button id="bannerButton" class="banner-button">
+            ▶ Lihat Detail
+        </button>
+
+    </div>
+
+    <div class="banner-indicators" id="bannerIndicators"></div>
+
+</section>
+  
+<!-- FILM TERPOPULER -->
+<section class="movie-section">
+    <div class="section-title">
+        <h2>🔥 Film Terpopuler</h2>
+    </div>
+
+    <div id="topMovieContainer" class="movie-container">
+        <!-- Film terpopuler akan muncul otomatis -->
+    </div>
+</section>
+
+  <!-- FILM TERBARU -->
+<section class="movie-section">
+    <div class="section-title">
+        <h2>🆕 Film Terbaru</h2>
+    </div>
+
+    <div id="newMovieContainer" class="movie-container">
+        <!-- Film terbaru akan muncul otomatis -->
+    </div>
+</section>
+
+    <!-- FILM -->
+    <main id="film">
+
+        <section class="movie-section">
+            <div class="section-title">
+                <h2>Film Populer</h2>
+                <button onclick="loadPopularMovies()">
+                    Refresh
+                </button>
+            </div>
+
+          <div class="genre-filter">
+    <button class="active" onclick="loadPopularMovies()">Semua</button>
+    <button onclick="filterGenre(28, this)">Action</button>
+    <button onclick="filterGenre(12, this)">Adventure</button>
+    <button onclick="filterGenre(16, this)">Animation</button>
+    <button onclick="filterGenre(35, this)">Comedy</button>
+    <button onclick="filterGenre(80, this)">Crime</button>
+    <button onclick="filterGenre(99, this)">Documentary</button>
+    <button onclick="filterGenre(18, this)">Drama</button>
+    <button onclick="filterGenre(14, this)">Fantasy</button>
+    <button onclick="filterGenre(27, this)">Horror</button>
+    <button onclick="filterGenre(9648, this)">Mystery</button>
+    <button onclick="filterGenre(10749, this)">Romance</button>
+    <button onclick="filterGenre(878, this)">Sci-Fi</button>
+    <button onclick="filterGenre(53, this)">Thriller</button>
+    <button onclick="filterGenre(10752, this)">War</button>
+    <button onclick="filterGenre(37, this)">Western</button>
+          </div>
+
+            <div id="loading" class="loading">
+                Memuat film...
+            </div>
+
+            <div id="movieContainer" class="movie-container">
+                <!-- Film akan muncul otomatis di sini -->
+            </div>
+
+          <button id="loadMoreButton" class="load-more-button" onclick="loadMoreMovies()" style="display: none;">
+    Muat Lebih Banyak
+          </button>
+
+        </section>
+
+        <!-- HASIL PENCARIAN -->
+        <section class="movie-section search-result-section">
+
+            <div class="section-title">
+                <h2 id="searchTitle">
+                    Hasil Pencarian
+                </h2>
+            </div>
+
+            <div id="searchContainer" class="movie-container">
+                <!-- Hasil pencarian muncul di sini -->
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- DETAIL FILM -->
+    <div id="movieModal" class="modal">
+
+        <div class="modal-content">
+
+            <button
+                class="close-button"
+                onclick="closeMovieDetail()">
+                ×
+            </button>
+
+            <div id="movieDetail">
+                <!-- Detail film -->
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <p>
+            © 2026 FilmKu
+        </p>
+
+        <p class="tmdb-notice">
+            Data film disediakan oleh TMDB.
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
